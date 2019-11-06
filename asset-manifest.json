@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/EECS496Assignment3/static/css/main.8e43f6a1.chunk.css",
+    "main.js": "/EECS496Assignment3/static/js/main.df4739d3.chunk.js",
+    "main.js.map": "/EECS496Assignment3/static/js/main.df4739d3.chunk.js.map",
+    "runtime-main.js": "/EECS496Assignment3/static/js/runtime-main.e4d8dce5.js",
+    "runtime-main.js.map": "/EECS496Assignment3/static/js/runtime-main.e4d8dce5.js.map",
+    "static/css/2.65d0fb34.chunk.css": "/EECS496Assignment3/static/css/2.65d0fb34.chunk.css",
+    "static/js/2.34a88d11.chunk.js": "/EECS496Assignment3/static/js/2.34a88d11.chunk.js",
+    "static/js/2.34a88d11.chunk.js.map": "/EECS496Assignment3/static/js/2.34a88d11.chunk.js.map",
+    "index.html": "/EECS496Assignment3/index.html",
+    "precache-manifest.86bfa2d23bc3ae67934f4019e1bff7ce.js": "/EECS496Assignment3/precache-manifest.86bfa2d23bc3ae67934f4019e1bff7ce.js",
+    "service-worker.js": "/EECS496Assignment3/service-worker.js",
+    "static/css/2.65d0fb34.chunk.css.map": "/EECS496Assignment3/static/css/2.65d0fb34.chunk.css.map",
+    "static/css/main.8e43f6a1.chunk.css.map": "/EECS496Assignment3/static/css/main.8e43f6a1.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4d8dce5.js",
+    "static/css/2.65d0fb34.chunk.css",
+    "static/js/2.34a88d11.chunk.js",
+    "static/css/main.8e43f6a1.chunk.css",
+    "static/js/main.df4739d3.chunk.js"
+  ]
+}
