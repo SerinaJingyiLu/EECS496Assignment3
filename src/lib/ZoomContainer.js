@@ -9,7 +9,7 @@ export function ZoomContainer({ children }) {
   useEffect(() => {
     if (!svgElement) return
     const selection = d3.select(svgElement)
-    const zoom = d3.zoom().on("zoom", function() {
+    const zoom = d3.zoom().scaleExtent([1, 10]).on("zoom", function() {
       setTransform(d3.event.transform)
     })
     selection.call(zoom)

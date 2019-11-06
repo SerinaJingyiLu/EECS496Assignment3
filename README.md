@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Interactive Visualizer | JINGYI LU & LINGZHI XI
 
-## Available Scripts
+## Topic: Global Terrorism Activities
 
-In the project directory, you can run:
+Global Terrorism Activities Visualizer for Northwestern's EECS 496 Assignment 3: Creating an Interactive Visualization. See a live demo [here](https://www.google.com).
 
-### `yarn start`
+## Setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Make sure you have Node.js installed. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+2. Open terminal.
 
-### `yarn test`
+3. cd to the root repository.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. cd interactive-visualization.
 
-### `yarn build`
+5. Run `npm install` to install all the packages.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Once packages have installed, run `npm start` to see the application locally.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+** It is recommended to use Chrome with browser width > 1280px.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Files
 
-### `yarn eject`
+1. All the front-end related code is under `src` folder.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. All the datasets are under `src/lib/dataset`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. All the code for processing data is under `src/python` folder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. We used the data in `filtered_dataset_small.json`, which only collects gloabl terrorism activities from 2016 to 2017. For a larger dataset, you could use `filtered_dataset.json`, which collects gloabl terrorism activities from 2012 to 2017. To do this, you could simply change the code in `src/App.js`:  <br/>
+```
+//change line 25 as follows
+const extractData = require("./lib/dataset/extract_dataset.json");
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+//change line 143 as follows
+const terrorist = await require("./lib/dataset/filtered_dataset.json");
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

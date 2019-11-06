@@ -1,13 +1,12 @@
 import { geoMercator, geoPath } from "d3-geo";
 import * as d3 from "d3";
 import { scaleOrdinal, scaleLinear } from "d3-scale";
-import { legendColor } from 'd3-svg-legend';
+import { legendColor } from "d3-svg-legend";
 import React, { Component } from "react";
 import _ from "lodash";
 import styled from "styled-components";
 import { ZoomContainer } from "./ZoomContainer";
 import { Stage } from "./Stage";
-
 
 const CircleTooptip = styled.div`
   visibility: hidden;
@@ -27,53 +26,71 @@ class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ordinalcolorScale:
-         scaleOrdinal(d3.schemePaired),
-          
-        linearcolorScale: scaleLinear()
+      ordinalcolorScale: scaleOrdinal(d3.schemePaired),
+
+      linearcolorScale: scaleLinear()
         .domain([
           _.get(this.props.extractData[0], "casualities")[0],
           _.get(this.props.extractData[0], "casualities")[
             _.get(this.props.extractData[0], "casualities").length - 1
           ]
         ])
-        .range(["orange","purple"]),
-
+        .range(["orange", "purple"])
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const legendLinear = legendColor()
-    .shapeWidth(30)
-    .orient('horizontal')
-    .scale(this.state.linearcolorScale)
+      .shapeWidth(30)
+      .orient("horizontal")
+      .scale(this.state.linearcolorScale);
     const legendOrdinal = legendColor()
-    .shapePadding(10)
-    .scale(this.state.ordinalcolorScale)
-    if(this.props.displayValue==='AttackType'){
-      d3.select('#colorLegend').append("svg").attr("height",250).append("g").call(legendOrdinal)
-    }else{
-      d3.select('#colorLegend').append("svg").attr("height",100).append("g").call(legendLinear)
+      .shapePadding(10)
+      .scale(this.state.ordinalcolorScale);
+    if (this.props.displayValue === "AttackType") {
+      d3.select("#colorLegend")
+        .append("svg")
+        .attr("height", 250)
+        .append("g")
+        .call(legendOrdinal);
+    } else {
+      d3.select("#colorLegend")
+        .append("svg")
+        .attr("height", 100)
+        .append("g")
+        .call(legendLinear);
     }
   }
 
-  
   componentWillUpdate(nextProps, nextState) {
     const legendLinear = legendColor()
-    .shapeWidth(50)
-    .orient('horizontal')
-    .scale(this.state.linearcolorScale)
+      .shapeWidth(50)
+      .orient("horizontal")
+      .scale(this.state.linearcolorScale);
     const legendOrdinal = legendColor()
-    .shapePadding(10)
-    .scale(this.state.ordinalcolorScale)
-    if(nextProps.displayValue==='AttackType'){
-      d3.select('#colorLegend').selectAll("svg").remove()
-      d3.select('#colorLegend').append("svg").attr("height",250).append("g").call(legendOrdinal)
-    }else{
-      d3.select('#colorLegend').selectAll("svg").remove()
-      d3.select('#colorLegend').append("svg").attr("height",60).append("g").call(legendLinear)
+      .shapePadding(10)
+      .scale(this.state.ordinalcolorScale);
+    if (nextProps.displayValue === "AttackType") {
+      d3.select("#colorLegend")
+        .selectAll("svg")
+        .remove();
+      d3.select("#colorLegend")
+        .append("svg")
+        .attr("height", 250)
+        .append("g")
+        .call(legendOrdinal);
+    } else {
+      d3.select("#colorLegend")
+        .selectAll("svg")
+        .remove();
+      d3.select("#colorLegend")
+        .append("svg")
+        .attr("height", 60)
+        .append("g")
+        .call(legendLinear);
     }
   }
+
 
   tooltipInnerHTML = ter => {
     return `
@@ -90,7 +107,7 @@ class WorldMap extends Component {
   render() {
     const { terrorist, displayValue } = this.props;
     const { ordinalcolorScale, linearcolorScale } = this.state;
-    console.log(displayValue)
+    console.log(displayValue);
     console.log(terrorist.length);
     const mercator = geoMercator();
     const project = geoPath().projection(mercator);
@@ -243,7 +260,7 @@ class WorldMap extends Component {
                   id={`WorldMap_Circle_${index}`}
                   cx={x}
                   cy={y}
-                  r={terrorist.length>30?0.5:3}
+                  r={terrorist.length > 30 ? 0.5 : 3}
                   fill={
                     displayValue === "AttackType"
                       ? ordinalcolorScale(_.get(ter, "AttackType"))
@@ -254,7 +271,10 @@ class WorldMap extends Component {
                   onMouseOver={() => {
                     document.querySelector("#circletooltip").style.visibility =
                       "visible";
-                    d3.select(`#WorldMap_Circle_${index}`).style("r", terrorist.length>30?1.5:4);
+                    d3.select(`#WorldMap_Circle_${index}`).style(
+                      "r",
+                      terrorist.length > 30 ? 1.5 : 4
+                    );
                   }}
                   onMouseMove={e => {
                     document.querySelector(
@@ -268,11 +288,15 @@ class WorldMap extends Component {
                     ).innerHTML = tooltipInnerHTML;
                   }}
                   onMouseLeave={() => {
-                    d3.select(`#WorldMap_Circle_${index}`).style("r", terrorist.length>30?0.5:3);
+                    d3.select(`#WorldMap_Circle_${index}`).style(
+                      "r",
+                      terrorist.length > 30 ? 0.5 : 3
+                    );
                     document.querySelector("#circletooltip").style.visibility =
                       "hidden";
                   }}
                 />
+                
               );
             })}
           </ZoomContainer>

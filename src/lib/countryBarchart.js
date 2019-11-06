@@ -59,6 +59,7 @@ class CountryBarChart extends Component {
       padding,
       sliceStart: 0,
       sliceWidth,
+      clickedCountry:'',
 
       xScale: d3
         .scaleBand()
@@ -89,7 +90,8 @@ class CountryBarChart extends Component {
       scrollSelectorX: svgScrollMargin.left,
 
       bars: [],
-      scrollBars: []
+      scrollBars: [],
+      terrorist: this.props.terrorist
     };
 
     this.xAxis = d3.axisBottom().scale(this.state.xScale);
@@ -99,10 +101,24 @@ class CountryBarChart extends Component {
       .ticks(5);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { terrorist } = nextProps;
-    return { terrorist };
+  componentWillReceiveProps(nextProps){
+    if (this.props.terrorist !== nextProps.terrorist){
+      this.setState({terrorist:nextProps.terrorist})
+      const bars = this.calculateBars(nextProps.terrorist);
+      const scrollBars = this.calculateScrollBars(nextProps.terrorist);
+      const selector = this.calculateScrolSellector(scrollBars.length);
+  
+      const states = { ...selector, bars, scrollBars };
+  
+      this.setState(states);
+    }
   }
+
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   const { terrorist } = nextProps;
+  //   return { terrorist };
+  // }
 
   xAxisRef = element => {
     this.setState({ xAxisRef: element });
@@ -134,16 +150,15 @@ class CountryBarChart extends Component {
     newSlice = Math.round(newSlice / this.state.scrollBandWidth);
 
     if (newSlice !== oldSlice) {
-      const bars = this.calculateBars(newSlice);
+      const bars = this.calculateBars(this.state.terrorist, newSlice);
       this.setState({ scrollSelectorX: newX, sliceStart: newSlice, bars });
     } else {
       this.setState({ scrollSelectorX: newX });
     }
   };
 
-  calculateBars = newSliceStart => {
-    const { terrorist } = this.state;
-
+  calculateBars = (terrorist, newSliceStart) => {
+   
     let {
       xScale,
       yScale,
@@ -239,8 +254,8 @@ class CountryBarChart extends Component {
     return bars;
   };
 
-  calculateScrollBars = () => {
-    const { xScrollScale, yScrollScale, svgHeight, terrorist } = this.state;
+  calculateScrollBars = terrorist => {
+    const { xScrollScale, yScrollScale, svgHeight } = this.state;
 
     const countryToTerroristCount = {},
       dataForBarchart = [],
@@ -318,8 +333,8 @@ class CountryBarChart extends Component {
       return;
     }
 
-    const bars = this.calculateBars();
-    const scrollBars = this.calculateScrollBars();
+    const bars = this.calculateBars(this.state.terrorist);
+    const scrollBars = this.calculateScrollBars(this.state.terrorist);
     const selector = this.calculateScrolSellector(scrollBars.length);
 
     const states = { ...selector, bars, scrollBars };
@@ -345,6 +360,7 @@ class CountryBarChart extends Component {
       .attr("y", 25)
       .attr("x", 160)
       .text("# Terrorist Activities");
+    
   }
 
   render() {
@@ -416,6 +432,17 @@ class CountryBarChart extends Component {
                         .style("font-size", function() {
                           return 12 / 2.5 + "px";
                         });
+                        if(this.state.clickedCountry!==null){
+                          d3.select(`#country_${Object.keys(world).indexOf(this.state.clickedCountry)}`).classed("clicked", false)
+                        .attr("fill", "white");
+                        d3.select(`#countryLabel_${Object.keys(world).indexOf(d.country)}`).classed("clicked", false)
+                        .style("visibility", "hidden");
+                        }
+                        d3.select(`#country_${Object.keys(world).indexOf(d.country)}`).classed("clicked", true)
+                        .attr("fill", "#FFD700");
+                        d3.select(`#countryLabel_${Object.keys(world).indexOf(d.country)}`).classed("clicked", true)
+                        .style("visibility", "visible");
+                        this.setState({clickedCountry: d.country})
               }}
               
             />
