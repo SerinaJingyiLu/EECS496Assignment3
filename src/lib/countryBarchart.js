@@ -435,7 +435,7 @@ class CountryBarChart extends Component {
                         if(this.state.clickedCountry!==null){
                           d3.select(`#country_${Object.keys(world).indexOf(this.state.clickedCountry)}`).classed("clicked", false)
                         .attr("fill", "white");
-                        d3.select(`#countryLabel_${Object.keys(world).indexOf(d.country)}`).classed("clicked", false)
+                        d3.select(`#countryLabel_${Object.keys(world).indexOf(this.state.clickedCountry)}`).classed("clicked", false)
                         .style("visibility", "hidden");
                         }
                         d3.select(`#country_${Object.keys(world).indexOf(d.country)}`).classed("clicked", true)
