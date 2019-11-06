@@ -2,7 +2,7 @@
 
 ## Topic: Global Terrorism Activities
 
-Global Terrorism Activities Visualizer for Northwestern's EECS 496 Assignment 3: Creating an Interactive Visualization. See a live demo [here](https://www.google.com).
+Global Terrorism Activities Visualizer for Northwestern's EECS 496 Assignment 3: Creating an Interactive Visualization. See a live demo [here](https://serinajingyilu.github.io/EECS496Assignment3/).
 
 ## Setup
 
