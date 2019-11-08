@@ -100,7 +100,7 @@ class WorldMap extends Component {
       <p>City: ${_.get(ter, "city", "Unknown")}</p>
       <p>Country: ${_.get(ter, "Country", "Unknown")}</p>
       <p>Attack Type: ${_.get(ter, "AttackType", "Unknown")}</p>
-      <p>Casualities: ${_.get(ter, "casualities", "Unknown")}</p>
+      <p>Casualties: ${_.get(ter, "casualities", "Unknown")}</p>
       `;
   };
 

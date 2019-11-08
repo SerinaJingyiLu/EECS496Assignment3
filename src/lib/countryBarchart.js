@@ -398,7 +398,7 @@ class CountryBarChart extends Component {
                       "# Terrorist Activities: " +
                       d.tot +
                       "<br/>" +
-                      "# Casualities: " +
+                      "# Casualties: " +
                       d.cau
                   )
                   .style("left", e.screenX +  10 + "px")

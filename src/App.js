@@ -624,7 +624,7 @@ class App extends Component {
                         By Attack Types
                       </Radio>
                       <Radio style={radioStyle} value={"Casualities"}>
-                        By Casualities
+                        By Casualties
                       </Radio>
                     </Radio.Group>
                   </div>
